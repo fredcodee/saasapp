@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Register</title>
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'accounts/signup.css'%}" type="text/css">
 </head>
 <body>
-  <div>
-    <form action="{% url 'login' %}" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" id="submit">Login</button>
-    </form>
-    <p>no account register <span><a href="/register">here</a></span></p>
 
-    {%for message in messages%}
-      <p>{{message}}</p>
-    {% endfor %}
-  </div>
+<form action="/login/"  method="post">
+  {% csrf_token %}
+
+  <h1>Sign In</h1>
   
+  <fieldset>
+
+    {{ form.as_p }}
+
+  </fieldset>
+
+  <button type="submit">Sign In</button>
+</form>
+<p style="text-align:center;">no account register <span><a href="/register">here</a></span></p>
+{%for message in messages%}
+  <p>{{message}}</p>
+{% endfor %}
+
 </body>
 </html>

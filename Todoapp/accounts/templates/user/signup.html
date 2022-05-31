@@ -1,23 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-
+{% load static %}
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'accounts/signup.css'%}" type="text/css">
 </head>
-
 <body>
-  <div>
-    <form action="" method="POST">
-      {% csrf_token %}
-      {{form.as_p}}
-      <input type="submit" name="create_user">
 
-    </form>
-    {{form.errors}}
-  </div>
+<form action=""  method="post">
+  {% csrf_token %}
+
+  <h1>Sign Up</h1>
+  
+  <fieldset>
+    <legend><span class="number">1</span>Your basic info</legend>
+    <label for="first_name">First Name:</label>
+    {{ form.first_name }}
+
+    <label for="last_name">Last Name:</label>
+    {{ form.last_name }}
+    
+    <label for="mail">Email:</label>
+    {{ form.email }}
+    
+    <label for="password">Password:</label>
+    {{ form.password1}}
+
+    <label for="password">  Confirm Password:</label>
+    {{ form.password2}}
+
+  </fieldset>
+
+  <button type="submit">Sign Up</button>
+</form>
+{{form.errors}}
+
 </body>
-
 </html>
