@@ -69,16 +69,33 @@
 
 </head>
 <body>
-
-  <div>
-    <a href="{% url 'register'%}">Register</a>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'logout'%}">Logout</a>
-  </div>
-
-  <div>
-    <h3>welcome {{request.user}}</h3>
-  </div>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Task.io</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/">welcome {{request.user}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout/" style="color:red">Log out</a>
+            </li>
+          {%else%}
+            <li class="nav-item">
+              <a class="nav-link"  href="login/">Sign in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register/"> Register</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 	<div class="container">
 

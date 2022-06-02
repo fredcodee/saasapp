@@ -1,4 +1,5 @@
 from turtle import title
+from webbrowser import get
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -9,7 +10,10 @@ import json
 
 #view
 def home(request):
-  get_tasks = Task.objects.filter(user = request.user).order_by('-id')
+  if request.user.is_authenticated:
+    get_tasks = Task.objects.filter(user = request.user).order_by('-id')
+  else:
+    get_tasks = {'register/login to modify your tasks'}
   context   = {
     'tasks': get_tasks,
   }
