@@ -52,3 +52,13 @@ def checkTask(request):
 
 
 #delete
+@login_required(login_url='login')
+def DeleteTask(request):
+  data = json.loads(request.body)
+  taskId = data['taskId']
+
+  get_task = Task.objects.get(id = taskId)
+  get_task.delete()
+
+  return JsonResponse('deleted', safe = False)
+

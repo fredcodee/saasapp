@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<title>TO DO</title>
@@ -9,9 +10,9 @@
 
 	<style type="text/css">
 		body{
-            background: rgb(245,245,233);
-            background: linear-gradient(90deg, rgba(245,245,233,1) 0%, rgba(238,233,43,1) 35%, rgba(75,77,43,1) 100%);
-		}
+      background: rgb(241,241,241);
+      background: linear-gradient(90deg, rgba(241,241,241,1) 0%, rgba(183,235,147,1) 35%, rgba(58,98,70,1) 100%);
+    }
 
 
 		h1, h2, h3, h4, h5, p, span, strike{
@@ -118,7 +119,7 @@
           {% endif %}
 
           <div style="flex:1">
-            <button class="btn btn-sm btn-outline-dark delete">delete</button>
+            <button data-task="{{task.id}}" class="btn btn-sm btn-outline-dark delete">delete</button>
           </div>
 
         </div>
@@ -128,61 +129,7 @@
 
 	</div>
 
-	<script type="text/javascript">
-    var user = '{{request.user}}'
-
-    function getToken(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          // Does this cookie string begin with the name we want?
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
-        }
-      }
-      return cookieValue;
-    }
-    const csrftoken = getToken('csrftoken');
-
-    var checkBtn = document.getElementsByClassName('edit');
-
-    for  (i = 0; i <  checkBtn.length; i++){
-      checkBtn[i].addEventListener("click", function() {
-        var taskId = this.dataset.task;
-        var action = this.dataset.action;
-        console.log('working')
-        check(taskId, action)
-      });
-    }
-
-    function check(taskId, action){
-      var url = '/check/'
-      
-      fetch(url,{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          'X-CSRFToken': csrftoken,
-          
-        },
-        body: JSON.stringify({'taskId': taskId, 'action':action})
-      })
-
-      .then((Response) =>{
-          return Response.json()
-      })
-
-      .then((data) =>{
-          console.log('data:', data)
-          location.reload()
-      })
-    }
-
-	</script>
+	<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
 
 </body>
 </html>
