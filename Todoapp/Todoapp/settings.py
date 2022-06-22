@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'memberships',
     'todo',
 ]
 
@@ -133,3 +134,7 @@ LOGIN_REDIRECT_URL = 'home'
 #to login with email
 AUTH_USER_MODEL = 'accounts.CustomUser' 
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+#srtipe
+STRIPE_PUBLIC_KEY = 'pk_test_51KLLrVHbrOhTO2jztT6IFWvJE6RFZVl9U7DLKa2CQdjQjd70WgJnbpdsG1ncPgEB8ETZ85Op2sxWEnWGw51LIsDA00fuTaPcvY'
+STRIPE_SECRET_KEY = 'sk_test_51KLLrVHbrOhTO2jzEWy6J4m7LS1PZqmbk3zYGwMJgPWlYydOEQA3nlyWbdQv3nQvToZhF2i2m1rnpxXjlTGNSTdZ00auZaryb1'
