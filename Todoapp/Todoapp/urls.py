@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from memberships.views import stripe_webhook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('', include('todo.urls')),
-    path('membership/', include('memberships.urls'))
+    path('membership/', include('memberships.urls')),
+    path('stripe_webhook/', stripe_webhook, name = 'stripe_webhook')
+
 
 ]

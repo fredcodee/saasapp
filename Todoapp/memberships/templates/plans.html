@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,16 +115,12 @@
                 {% if current_membership == None and membership.membership_type == 'Free'  or membership == current_membership.membership %}
                     <p style="color: orange;font-size: 14px;padding-top: 1rem;">This is your current plan</p>
                 {% else %}
-                    <form action="/membership/upgradeplan/" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="membership_type" value="{{membership.membership_type}} {{membership.payment_type}}">
-                        <button type="submit" class="btn btn-warning">Subscribe</button>
-                    </form>   
+                    <a href="{% url 'upgrade_plan' membership.membership_type %}"><button type="button" class="btn btn-warning">Subscribe</button> </a>
                 {% endif %}
             </div>
         {% endfor %}
       </section>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-   </body>
+</body>
 </html>

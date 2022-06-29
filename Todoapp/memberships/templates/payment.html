@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 order-md-2 mb-4">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Task Subscribtion</span>
+              </h4>
+              <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6 class="my-0">{{ membership.membership_type |title }}</h6>
+                    <small class="text-muted">{{membership.payment_type | title}}</small>
+                  </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total (USD)</span>
+                  <strong>${{ membership.price }}</strong>
+                </li>
+              </ul>
+      
+              <div class="text-center pt-3">
+                <script src="https://js.stripe.com/v3/"></script>
+                <button id="checkout-button" data-secret="{{ session_id }}" onclick="openStripe()">
+                    Checkout
+                </button>
+
+                <script>
+                    var stripe = Stripe('{{stripe_public_key}}')
+                    var sessionid = '{{ session_id }}';
+                </script>
+                <script src="{% static 'js/checkout.js' %}"></script>
+    
+              </div>
+              </div>
+        </div>
+    </div>
+      
+</body>
+</html>

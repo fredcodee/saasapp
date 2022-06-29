@@ -7,6 +7,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 MEMBERSHIP_CHOICES = (
     ('Professional', 'pro'),
+    ('Professional+', 'pro+'),
     ('Free', 'free')
 )
 
@@ -23,7 +24,7 @@ class Membership(models.Model):
         max_length=30)
     price = models.IntegerField(default=0)
     payment_type= models.CharField(choices= PAYMENT_TYPE, default='Monthly', max_length= 50)
-    
+    stripe_price_id = models.CharField(max_length=200, default="price_1LCfzGHbrOhTO2jzGrkrAkqm")
 
     def __str__(self):
         return self.membership_type + " " + self.payment_type
@@ -57,8 +58,8 @@ class UserSubsription(models.Model):
     user_membership = models.ForeignKey(
         UserMembership, on_delete=models.CASCADE)
     stripe_subscription_id = models.CharField(max_length=40)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
 
     
     def __str__(self):
-        return self.user.email 
+        return self.stripe_subscription_id 
