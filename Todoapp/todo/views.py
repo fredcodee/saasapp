@@ -1,3 +1,4 @@
+from http import server
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -84,3 +85,14 @@ def DeleteTask(request):
 
   return JsonResponse('deleted', safe = False)
 
+
+#errors
+def handle_not_found(request, exception):
+  return render(request, 'errors_page/not-found.html')
+
+
+def handle_server_error(request):
+  return render(request, 'errors_page/server-error.html')
+
+
+#hosting
