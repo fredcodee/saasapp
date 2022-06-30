@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>payment successful</title>
-</head>
-<body>
-    <h1>Payment successful</h1>
-    
-</body>
-</html>
+{% extends "home.html" %}
+{% load static %}
+{% block contents %}
+    <div style="
+    text-align: center;
+    /* color: white; */
+    padding-top: 3rem;">
+        <h1>Payment successful</h1>
+        <p>head to home to start using our services or check your profile</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "home.html" %}
+{% block contents %}
+    <div style="
+    /* text-align: center; */
+    background-color: white;
+    margin-top: 4rem;
+    padding: 2rem;">
+        <h2 style="text-align:center;">{{email}}</h2>
+        <hr>
+        <div>
+            <p>Current plan: <span>{{ plan.membership.membership_type}}</span></p>
+            {% if plan.membership.membership_type != 'Free' %}
+                <p>created on:  {{ user_subscription.get_created_date }}</p>
+                <p>Next payment due:  {{ user_subscription.get_next_billing_date }}</p>
+                <a href="{% url 'cancel_subscription' %}" ><button class="btn btn-danger">Cancel Subscription</button> </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

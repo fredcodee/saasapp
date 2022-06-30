@@ -1,4 +1,5 @@
 from django.conf import settings
+from datetime import datetime
 from django.db import models
 from django.db.models.signals import post_save
 import stripe
@@ -62,4 +63,16 @@ class UserSubsription(models.Model):
 
     
     def __str__(self):
-        return self.stripe_subscription_id 
+        return self.user_membership.user.username
+
+    @property
+    def get_created_date(self):
+        subscription = stripe.Subscription.retrieve(
+            self.stripe_subscription_id)
+        return datetime.fromtimestamp(subscription.created)
+
+    @property
+    def get_next_billing_date(self):
+        subscription = stripe.Subscription.retrieve(
+            self.stripe_subscription_id)
+        return datetime.fromtimestamp(subscription.current_period_end)
