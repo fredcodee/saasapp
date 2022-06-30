@@ -63,7 +63,7 @@ class UserSubsription(models.Model):
 
     
     def __str__(self):
-        return self.user_membership.user.username
+        return self.user_membership.user.email
 
     @property
     def get_created_date(self):

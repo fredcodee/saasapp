@@ -155,8 +155,7 @@ def cancel_subscription(request):
     sub = stripe.Subscription.retrieve(user_sub.stripe_subscription_id)
     sub.delete()
 
-    user_sub.active = False
-    user_sub.save()
+    user_sub.delete()
 
     free_membership = Membership.objects.get(membership_type='Free')
     user_membership = getuser_membership(request)
@@ -177,8 +176,8 @@ def updateaccounts(request):
     for customer in customers:
         subscription = stripe.Subscription.retrieve(customer.stripe_subscription_id)
         if subscription.status != 'active':
-            customer.membership = False
+            customer.active = False
         else:
-            customer.membership = True
+            customer.active= True
         customer.save()
     return HttpResponse('completed')
