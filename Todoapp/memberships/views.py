@@ -5,10 +5,11 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import (Membership,UserSubsription, UserMembership)
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 import stripe
 from django.contrib.auth import get_user_model
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -166,3 +167,18 @@ def cancel_subscription(request):
         request, "Successfully cancelled membership. We have sent an email")
     # sending an email here
     return redirect('profile')
+
+
+
+#check if subscribtion is active in stripe
+@user_passes_test(lambda u: u.is_superuser)
+def updateaccounts(request):
+    customers = UserSubsription.objects.all()
+    for customer in customers:
+        subscription = stripe.Subscription.retrieve(customer.stripe_subscription_id)
+        if subscription.status != 'active':
+            customer.membership = False
+        else:
+            customer.membership = True
+        customer.save()
+    return HttpResponse('completed')
