@@ -3,7 +3,7 @@
 
 ## The purpose of this project
 This CRUD app was built to implement stripe payment system to django, create, manage and upadate user's subscribtion 
-and to restrict certian features for specific users depending on their current subscribtion.
+and to restrict certain features for specific users depending on their current subscribtion.
 
 
 
