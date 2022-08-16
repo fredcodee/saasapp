@@ -1,4 +1,3 @@
 # saasapp
-a simple saas app built with django
-a Todo app where user's subcription use all available features
+a Todo app where user's can pay to subcribe to use all available features
 
