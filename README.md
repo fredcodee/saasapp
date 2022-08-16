@@ -1,8 +1,8 @@
 ## What is saasapp
-- This a  simple Todo app where user's can pay to subcribe to use all available features use
+- This a simple Todo app where user's can pay to subcribe to use all available features use
 
 ## The purpose of this project
-this CRUD app was built to implement stripe payment system to django, create, manage and upadate user's subscribtion 
+This CRUD app was built to implement stripe payment system to django, create, manage and upadate user's subscribtion 
 and to restrict certian features for specific users depending on their current subscribtion.
 
 
